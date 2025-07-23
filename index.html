@@ -1,9 +1,9 @@
-<Body  html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Birthday Surprise for Fatima!</title>
+    <title>A Birthday Surprise for Aqib!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -16,19 +16,29 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html, body {
+        html {
             height: 100%;
             width: 100%;
             overflow: hidden;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
             font-family: 'Poppins', sans-serif;
             touch-action: manipulation;
+            background-image: url('https://iili.io/FeF38sS.md.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         /* Performance optimizations */
         .will-change {
             will-change: transform, opacity;
         }
-        
+
         /* Page Container - Common styles for all pages */
         .page-container {
             display: none; /* Hidden by default */
@@ -44,7 +54,8 @@
             transition: opacity 1s ease-in-out;
             text-align: center;
             padding: 20px;
-            background-color: white; /* White background for all pages */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
         }
 
         .page-container.visible {
@@ -99,12 +110,18 @@
             width: clamp(200px, 60vw, 300px);
             height: auto;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: pulse 2.5s infinite;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+                        0 5px 10px rgba(0, 0, 0, 0.1);
         }
         .gift-box-image:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3),
+                        0 15px 15px rgba(0,0,0,0.2);
         }
+
 
         /* Page 6: The Final Birthday Page */
         #page-6-birthday {
@@ -114,8 +131,9 @@
             flex-direction: column;
             z-index: 50;
             overflow: hidden;
+            backdrop-filter: none; /* Remove blur for this page */
         }
-        
+
         /* --- Styles for Falling Effects, Heading, Cake, Balloons etc. from original code --- */
         .chamkeel { position: absolute; top: -20px; width: 10px; height: 10px; background: white; border-radius: 50%; opacity: 0.8; animation: fall linear forwards; transform: translateZ(0); pointer-events: none; }
         @keyframes fall { to { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
@@ -142,7 +160,7 @@
         @keyframes confettiFall { 0% { transform: translateY(-100px) rotate(0deg) scale(1); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; } }
 
         #interactive-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; }
-        
+
         .controls { position: fixed; bottom: 20px; right: 20px; z-index: 101; display: flex; gap: 10px; }
         .control-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: all 0.3s ease; }
         .control-btn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
@@ -155,7 +173,7 @@
 
     <!-- PAGE 1: INVITATION -->
     <div id="page-1-invitation" class="page-container">
-        <h1 class="intro-text">I have a special surprise for you, Fatima!</h1>
+        <h1 class="intro-text">I have a special surprise for you, Aqib!</h1>
         <button id="start-btn" aria-label="Click to start the surprise">Let's see! ✨</button>
     </div>
 
@@ -185,9 +203,9 @@
 
     <!-- PAGE 6: THE FINAL BIRTHDAY PAGE -->
     <div id="page-6-birthday" class="page-container">
-        <h1 class="main-heading">Happy Birthday Fatima!</h1>
+        <h1 class="main-heading">Happy Birthday Aqib!</h1>
         <p class="personal-message">
-            Wishing you a day filled with happiness, joy, and all the things you love most! 
+            Wishing you a day filled with happiness, joy, and all the things you love most!
             May this year bring you endless opportunities and wonderful memories.
         </p>
         <div class="cake-container">
@@ -204,7 +222,7 @@
     </div>
 
     <audio id="birthday-song" loop preload="auto">
-        <source src="https://cdn1.aisonggenerator.io/7/audios/154ed65d-ee32-47db-b96a-8c8d19e7d1af.mp3" type="audio/mpeg">
+        <source src="https://cdn1.aisonggenerator.io/7/audios/1676a0b8-cc58-445f-9dd5-49d5f815d5d0.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -239,7 +257,7 @@
             musicBtn: document.getElementById('music-btn'),
             effectsBtn: document.getElementById('effects-btn')
         };
-        
+
         // --- INITIALIZATION ---
         function init() {
             // Preload assets for the final page
@@ -268,7 +286,7 @@
                     trigger.addEventListener('touchstart', () => goToPage(state.currentPage + 1), { passive: true });
                 }
             });
-            
+
             // Birthday page specific listeners
             DOM.interactiveArea.addEventListener('click', createClickEffect);
             DOM.interactiveArea.addEventListener('touchstart', createClickEffect, { passive: true });
@@ -288,7 +306,7 @@
             if (DOM.pages[currentPageIndex]) {
                 DOM.pages[currentPageIndex].classList.remove('visible');
             }
-            
+
             // After fade out, hide it completely and show the next one
             setTimeout(() => {
                 if (DOM.pages[currentPageIndex]) {
@@ -322,12 +340,12 @@
                 startEffects();
             }
         }
-        
+
         function startEffects() {
             createChamkeel();
             setTimeout(() => createConfettiBurst(), 2000);
         }
-        
+
         function createChamkeel() {
             if (!state.effectsOn) return;
             const colors = ['#f7d794', '#f5a623', '#f8e71c', '#7ed321', '#4a90e2', '#bd10e0', '#d0021b'];
@@ -388,7 +406,7 @@
             DOM.effectsBtn.textContent = state.effectsOn ? '✨' : '✖️';
             if (state.effectsOn) startEffects();
         }
-        
+
         function handleVisibilityChange() {
             if (document.hidden) {
                 DOM.birthdaySong.pause();
@@ -396,7 +414,7 @@
                 DOM.birthdaySong.play().catch(e => {});
             }
         }
-        
+
         // --- START THE APP ---
         init();
     </script>
